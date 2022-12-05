@@ -1,0 +1,96 @@
+﻿@using ShoesProject.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<sho>
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+<div class="filter-bar d-flex flex-wrap align-items-center">
+    <div class="sorting">
+        <a href="/SanPham/SearchProduct"><button type="button" class="btn btn-light">@ShoesProject.Resources.Data.SearchButton</button></a>
+    </div>
+    <div class="sorting mr-auto">
+
+    </div>
+    <div class="pagination">
+
+        <div> @Html.PagedListPager(Model, page => Url.Action("SanPham", new { page = page }))</div>
+        <div><h4> @ShoesProject.Resources.Data.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</h4></div>
+
+    </div>
+</div>
+
+
+<!-- Start Best Seller -->
+<section class="lattest-product-area pb-40 category-list">
+    <div class="row">
+        <!-- single product -->
+        @foreach (var item in Model.OrderBy(n => n.price))
+        {
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="single-product">
+                    <a href="@Url.Action("ChiTietSanPham","SanPham", new { id = item.id })">
+                        <img class="img-fluid" src="@Url.Content("~/"+item.imageslink)" alt="">
+                    </a>
+                    <div class="product-details">
+                        <h6>
+                            @item.name
+                        </h6>
+                        <div class="price">
+                            <h6>@item.price.ToString("#,## VND")</h6>
+                            <h6 class="l-through">@item.pricebefore.ToString("#,## VND")</h6>
+                        </div>
+                        <div class="prd-bottom">
+                            @*thêm giỏ hàng bình thường
+         <a href="@Url.Action("ThemGioHang","GioHang", new {@MaSP=item.id, @strUrl= Request.Url.ToString()})" class="social-info">
+            <span class="ti-bag"></span>
+            <p class="hover-text">add to bag</p>
+        </a>*@
+                            @if (item.status == "AVAILABLE")
+                            {
+                                @*Thêm giỏ hàng Ajax*@
+                            <span class="ti-bag"></span>
+                                @Ajax.ActionLink(ShoesProject.Resources.Data.AddtoCard, "ThemGioHangAjax", "GioHang", new { @MaSP = item.id, @strUrl = Request.Url.ToString() }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-sm", @onclick = "alert('Add to cart success!')" })
+                                <a href="/GioHang/ThemGioHang/@(item.id)"><button type="button" class="btn btn-success btn-sm">@ShoesProject.Resources.Data.BuyNow</button></a>
+                }
+                else
+                {
+                    <p style="color:orange">@item.status</p>
+                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<script>
+    $("#productMenu").attr('class', 'nav-item active');
+</script>
+<script>
+    $(function () {
+        $("#searchName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/SanPham/AutoCompleteSearch",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.name, value: item.name };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            },
+            autoFocus: true
+        });
+    });
+</script>

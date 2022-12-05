@@ -1,0 +1,826 @@
+﻿@model ShoesProject.Models.ManageAccountModel
+
+@{
+    Layout = "~/Views/Layout/ManageAccountLayout.cshtml";
+}
+<div class="container">
+    <br />
+    <div class="row features-inner">
+        <div class="container ">
+            <div class="container">
+                <h2>@ShoesProject.Resources.Data.ManageYourAccount</h2>
+                <br>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab1"
+                           data-toggle="tab" href="#general">@ShoesProject.Resources.Data.General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab2"
+                           href="#profile">@ShoesProject.Resources.Data.Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab3"
+                           href="#addressBookTab">@ShoesProject.Resources.Data.AddressBook</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab4"
+                           href="#receivedBill">@ShoesProject.Resources.Data.ReceivedBill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab4"
+                           href="#onWayBill">@ShoesProject.Resources.Data.OnWayBill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab4"
+                           href="#deliveredBill">@ShoesProject.Resources.Data.DeliveredBill</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="tab5"
+                           href="#cancelledBill">@ShoesProject.Resources.Data.CancelledBill</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div id="general" class="container tab-pane active">
+                        <br>
+                        <h3>@ShoesProject.Resources.Data.General</h3>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <b>@ShoesProject.Resources.Data.Profile</b>
+                                    <p>
+                                        @ShoesProject.Resources.Data.FullName <br /> <span>@(Model.fullname).</span>
+                                    </p>
+                                    <p>
+                                        @ShoesProject.Resources.Data.Email <br /> <span>@(Model.email).</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm">
+                                    <b>@ShoesProject.Resources.Data.AddressBook</b>
+                                    <p>@ShoesProject.Resources.Data.Default</p>
+                                    <p>@(Model.defaultAddress).</p>
+                                </div>
+                                <div class="col-sm">
+                                    <b>@ShoesProject.Resources.Data.PaymentAvailable</b>
+                                    <p>@ShoesProject.Resources.Data.Cash</p>
+                                    <p>Paypal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="profile" class="container tab-pane fade">
+                        <br>
+                        <h3>@ShoesProject.Resources.Data.Profile</h3>
+                        <h4>@ShoesProject.Resources.Data.YourAvatar</h4>
+                        <div>
+                            <form id="uploadAvatar" enctype="multipart/form-data">
+                                <img id="blah" src="~/@Model.avatar" alt="Your avatar"
+                                     style="margin: 2%; width: 20%; height: 20%"> <br /> <input type="file" id="imgInp" name="file"><br /> <br />
+                                <button type="submit" class="btn btn-warning" id="saveAvatar">@ShoesProject.Resources.Data.SaveMyAvatar</button>
+                                <p id="uploadImageMessage"></p>
+                            </form>
+                        </div>
+                        <h4>
+                            @ShoesProject.Resources.Data.BasicInfo
+                            <button type="button" class="btn btn-warning"
+                                    onclick="editBasicInfo()">
+                                <i class='fas fa-edit'></i>
+                            </button>
+                        </h4>
+                        <div id="basicInfo">
+                            <p>
+                                @ShoesProject.Resources.Data.FullName <span id="showFullname">@Model.fullname</span>
+                            </p>
+                            <p>
+                                @ShoesProject.Resources.Data.Phone <span id="showPhone">@Model.phone</span>
+                            </p>
+                            <p>
+                                @ShoesProject.Resources.Data.Email <span id="showEmail">@Model.email</span>
+                            </p>
+                            <p>
+                                @ShoesProject.Resources.Data.PermanentAddress <span id="showAddress">@Model.address</span>
+                            </p>
+                            <br />
+                        </div>
+                        <div id="basicInfoEdit">
+                            <form id="editBasicInfoForm">
+                                <input type="hidden" id="username"
+                                       value="@Model.username">
+                                <p>
+                                    @ShoesProject.Resources.Data.FullName <input type="text" class="form-control"
+                                                                                   value="@Model.fullname" id="fullname" required>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.Phone <input type="text" class="form-control"
+                                                                               value="@Model.phone" id="phone" pattern="(\d\D*){10}"
+                                                                               title="Phone number should only contain 10 numbers."
+                                                                               required>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.Email <input type="text" class="form-control"
+                                                                               value="@Model.email" id="email"
+                                                                               pattern="[a-z0-9._%+-]+@("@")[a-z0-9.-]+\.[a-z]{2,}$"
+                                                                               title="Email address must like example@gmail.com" required>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.PermanentAddress
+                                    <input type="text" class="form-control" value="@Model.address"
+                                           id="address" required>
+                                </p>
+                                <button type="submit" class="btn btn-warning">@ShoesProject.Resources.Data.Save</button>
+                            </form>
+                            <br />
+                        </div>
+                        <h4>
+                            @ShoesProject.Resources.Data.SigninInfo
+                            <button type="button" class="btn btn-warning">
+                                <i class='fas fa-edit' onclick="editSigninInfo()"></i>
+                            </button>
+                        </h4>
+                        <div id="signinInfo">
+                            <p>
+                                @ShoesProject.Resources.Data.Username: <span>@Model.username</span>
+                            </p>
+                            <p>@ShoesProject.Resources.Data.Password: ****</p>
+                            @*<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+            Delete My
+            Account
+        </button>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirm Delete your account</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="POST" action="SendRequestToDeleteAccount">
+                            <p>Are you sure want to delete your account. Thinking carefully! If you want, please reenter your password, we will send your request to admin.</p>
+                            <div class="form-group">
+                                <label for="pwd">Your password:</label>
+                                <button type="button" id="validateBtn" class="btn btn-warning" onclick="checkPasswordToDeleteAccount_ajax_submit()">Validate</button>
+                                <input type="password" class="form-control" id="passwordToDeleteAccount">
+                                <p id="messagePassword"></p>
+                                <button type="button" id="sendMyRequestBtn" onclick="sendRequestToDeleteAccount()" class="btn btn-danger" disabled>Send my request</button>
+                                <p id="messageSendRequest"></p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+                        </div>
+                        <div id="siginInfoEdit">
+                            <form name="changeSignin" id="sendMail"
+                                  onsubmit="return saveProcess()">
+                                <p>
+                                    @ShoesProject.Resources.Data.Username: <span>@Model.username</span>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.OldPass: <input type="password" name="oldpass"
+                                                                                            id="oldpass" required>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.NewPass: <input type="password" name="newpass"
+                                                                                 id="newpass" required>
+                                </p>
+                                <p>
+                                    @ShoesProject.Resources.Data.ConfirmPass: <input type="password" id="confirmpass"
+                                                                                 name="confirmpass" required>
+                                </p>
+
+                                <button type="submit" class="btn btn-warning">@ShoesProject.Resources.Data.Change</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div id="addressBookTab" class="container tab-pane fade">
+                        <br>
+                        <div class="container">
+                            <h4>
+                                @ShoesProject.Resources.Data.YourAddress
+                                <button type="button" class="btn btn-warning"
+                                        onclick="addNewAddress()">
+                                    <i class='fa fa-plus'></i>
+                                </button>
+                            </h4>
+                            <br />
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>@ShoesProject.Resources.Data.Address</th>
+                                        <th>@ShoesProject.Resources.Data.Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableAddressBook">
+                                    @if (Model != null)
+                                    {
+                                        foreach (var item in Model.listAddress)
+                                        {
+                                            <span>
+                                                @if (item.status == "DEFAULT")
+                                                {
+                                                <tr>
+                                                    <input type="hidden" id="idAddressDefault"
+                                                           value="@item.id">
+
+                                                    <td>@item.address</td>
+                                                    <td id="statusAB@(item.id)">@ShoesProject.Resources.Data.Default</td>
+                                                </tr>
+                                            }
+                                                @if (item.status != "DEFAULT")
+                                                {
+                                                    <tr>
+                                                        <td>@item.address</td>
+                                                        <td id="statusAB@(item.id)">
+                                                            <button type="button"
+                                                                    class="btn btn-warning" name="@item.id"
+                                                                    onclick="setAddressDefault(name)">
+                                                                @ShoesProject.Resources.Data.SetDefault
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                </span>
+                                            }
+                                        }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div id="receivedBill" class="container tab-pane fade">
+                        <br>
+                        <h4>@ShoesProject.Resources.Data.ReceivedBill</h4>
+                        @if (Model.listReceivedBill.Count() > 0)
+                        {
+                    <p id="checkNumReceivedBill">
+                        @ShoesProject.Resources.Data.YouHaveAll <span>@(Model.listReceivedBill.Count()) @ShoesProject.Resources.Data.AtNow</span>.
+                    </p>
+                        }
+                        else
+                        {
+                            <div>
+                                <p>@ShoesProject.Resources.Data.YouNoBill</p>
+                            </div>
+                        }
+                        <p id="receivedBillEmpty"></p>
+                        <div class="container" id="receivedBillShow">
+                            <div class="row">
+                                @foreach (var item in Model.listReceivedBill)
+                                {
+                                    <div class="order_details_table">
+                                        <h2>@ShoesProject.Resources.Data.At @(item.fullDateTime)</h2>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Product</th>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Quantity</th>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Total</th>
+                                                    </tr>
+                                                    @foreach (var itembd in item.listBillDetails)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <p>@itembd.product</p>
+                                                            </td>
+                                                            <td>
+                                                                <h5>x @(itembd.quantity)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@itembd.price</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.SubTotal</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.totalCost</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Payment</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.payment</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Address</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.address</p>
+                                                        </td>
+                                                    </tr>
+
+                                                    @if (item.note != "")
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <h4>@ShoesProject.Resources.Data.Note</h4>
+                                                            </td>
+                                                            <td>
+                                                                <h5></h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@item.note</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Shipping</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@ShoesProject.Resources.Data.Free</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Total</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.totalCost</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Status</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.status</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div id="onWayBill" class="container tab-pane fade">
+                        <br>
+                        <h4>@ShoesProject.Resources.Data.OnWayBill</h4>
+                        @if (Model.listOnTheWayBill.Count() > 0)
+                        {
+                    <p id="checkNumOnWayBill">
+                        @ShoesProject.Resources.Data.YouHaveAll <span>@(Model.listOnTheWayBill.Count()) @ShoesProject.Resources.Data.AtNow</span>.
+                    </p>
+                        }
+                        else
+                        {
+                            <div>
+                                <p>@ShoesProject.Resources.Data.YouNoBill</p>
+                            </div>
+                        }
+                        <p id="onWayBillEmpty"></p>
+                        <div class="container" id="onWayBillShow">
+                            <div class="row">
+                                @foreach (var item in Model.listOnTheWayBill)
+                                {
+                                    <div class="order_details_table">
+                                        <h2>At @(item.fullDateTime)</h2>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col">Product</th>
+                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Total</th>
+                                                    </tr>
+                                                    @foreach (var itembd in item.listBillDetails)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <p>@itembd.product</p>
+                                                            </td>
+                                                            <td>
+                                                                <h5>x @(itembd.quantity)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@itembd.price</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Subtotal</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.totalCost</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Payment</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.payment</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Address</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.address</p>
+                                                        </td>
+                                                    </tr>
+
+                                                    @if (item.note != "")
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <h4>Note</h4>
+                                                            </td>
+                                                            <td>
+                                                                <h5></h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@item.note</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Shipping</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>Free</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Total</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.totalCost</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Status</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.status</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="deliveredBill" class="container tab-pane fade">
+                        <br>
+                        <h4>@ShoesProject.Resources.Data.DeliveredBill</h4>
+                        @if (Model.listDeliveredBill.Count() > 0)
+                        {
+                    <p id="checkNumDeliveredBill">
+                        @ShoesProject.Resources.Data.YouHaveAll <span>@(Model.listDeliveredBill.Count()) @ShoesProject.Resources.Data.AtNow</span>.
+                    </p>
+                        }
+                        else
+                        {
+                            <div>
+                                <p>@ShoesProject.Resources.Data.YouNoBill</p>
+                            </div>
+                        }
+                        <p id="deliveredBillEmpty"></p>
+                        <div class="container" id="deliveredBillShow">
+                            <div class="row">
+                                @foreach (var item in Model.listDeliveredBill)
+                                {
+                                <div class="order_details_table">
+                                    <h2>@ShoesProject.Resources.Data.At @(item.fullDateTime)</h2>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="col">@ShoesProject.Resources.Data.Product</th>
+                                                    <th scope="col">@ShoesProject.Resources.Data.Quantity</th>
+                                                    <th scope="col">@ShoesProject.Resources.Data.Total</th>
+                                                </tr>
+                                                @foreach (var itembd in item.listBillDetails)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <p>@itembd.product</p>
+                                                        </td>
+                                                        <td>
+                                                            <h5>x @(itembd.quantity)</h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@itembd.price</p>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td>
+                                                        <h4>@ShoesProject.Resources.Data.SubTotal</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>@item.totalCost</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>@ShoesProject.Resources.Data.Payment</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>@item.payment</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>@ShoesProject.Resources.Data.Address</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>@item.address</p>
+                                                    </td>
+                                                </tr>
+
+                                                @if (item.note != "")
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Note</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.note</p>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td>
+                                                        <h4>Shipping</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>@ShoesProject.Resources.Data.Free</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>@ShoesProject.Resources.Data.Total</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <b>@item.totalCost</b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>@ShoesProject.Resources.Data.Status</h4>
+                                                    </td>
+                                                    <td>
+                                                        <h5></h5>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            <b>@item.status</b>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="cancelledBill" class="container tab-pane fade">
+                        <br>
+                        <h4>@ShoesProject.Resources.Data.CancelledBill</h4>
+                        @if (Model.listCancelledBill.Count() > 0)
+                        {
+                    <p id="checkNumCancelledBill">
+                        @ShoesProject.Resources.Data.YouHaveAll <span>@(Model.listCancelledBill.Count()) @ShoesProject.Resources.Data.AtNow</span>.
+                    </p>
+                        }
+                        else
+                        {
+                            <div>
+                                <p>@ShoesProject.Resources.Data.YouNoBill</p>
+                            </div>
+                        }
+                        <p id="cancelledBillEmpty"></p>
+                        <div class="container" id="cancelledBillShow">
+                            <div class="row">
+                                @foreach (var item in Model.listCancelledBill)
+                                {
+                                    <div class="order_details_table">
+                                        <h2>At @(item.fullDateTime)</h2>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Product</th>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Quantity</th>
+                                                        <th scope="col">@ShoesProject.Resources.Data.Total</th>
+                                                    </tr>
+                                                    @foreach (var itembd in item.listBillDetails)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <p>@itembd.product</p>
+                                                            </td>
+                                                            <td>
+                                                                <h5>x @(itembd.quantity)</h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@itembd.price</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.SubTotal</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.totalCost</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Payment</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.payment</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Address</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@item.address</p>
+                                                        </td>
+                                                    </tr>
+
+                                                    @if (item.note != "")
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <h4>@ShoesProject.Resources.Data.Note</h4>
+                                                            </td>
+                                                            <td>
+                                                                <h5></h5>
+                                                            </td>
+                                                            <td>
+                                                                <p>@item.note</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Shipping</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>@ShoesProject.Resources.Data.Free</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Total</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.totalCost</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@ShoesProject.Resources.Data.Status</h4>
+                                                        </td>
+                                                        <td>
+                                                            <h5></h5>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <b>@item.status</b>
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#manageAccountMenu").attr('class', 'nav-item active');
+    </script>
