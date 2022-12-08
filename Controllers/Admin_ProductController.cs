@@ -68,7 +68,7 @@ namespace ShoesProject.Controllers
                 }
 
             }
-            
+
             db.shoes.Add(product);
             db.SaveChanges();
             ViewBag.successSave = "Add product successfully!";

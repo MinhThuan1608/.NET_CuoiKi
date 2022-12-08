@@ -697,3 +697,5 @@ D:\Documents\C#\Project\ShoesProject-Dotnet\Project-Dotnet (Final)\ShoesProject\
 D:\Documents\C#\Project\ShoesProject-Dotnet\Project-Dotnet (Final)\ShoesProject\obj\Debug\ShoesProject.csproj.AssemblyReference.cache
 D:\CodeC_Net\SourceCode\ShoesProject\obj\Debug\ShoesProject.dll
 D:\CodeC_Net\SourceCode\ShoesProject\obj\Debug\ShoesProject.pdb
+D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.dll
+D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.pdb

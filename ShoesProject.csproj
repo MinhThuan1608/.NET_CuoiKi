@@ -243,8 +243,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Config\PayPalConfig.cs" />
+    <Compile Include="Controllers\Admin_AccountController.cs" />
+    <Compile Include="Controllers\Admin_AddressController.cs" />
+    <Compile Include="Controllers\Admin_ProductController.cs" />
+    <Compile Include="Controllers\ChangePassController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ForgetPassController.cs" />
+    <Compile Include="Controllers\Cart_PurchaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\List.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageAccountController.cs" />
+    <Compile Include="Controllers\OTPConfirmController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
