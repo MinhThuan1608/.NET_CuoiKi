@@ -1,0 +1,97 @@
+﻿@using ShoesProject.Models
+@model IEnumerable<sho>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+    IEnumerable<sho> lstSP = ViewBag.ListSP as IEnumerable<sho>;
+}
+
+<!-- start product Area -->
+<section class="owl-carousel active-product-area section_gap">
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>@ShoesProject.Resources.Data.SampleProduct</h1>
+                        <p>
+                            @ShoesProject.Resources.Data.TextSampleProduct1
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in lstSP.Take(8))
+                {
+
+
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <a href="@Url.Action("ChiTietSanPham","SanPham", new { id = item.id })">
+                            <img class="img-fluid" src="@Url.Content("~/"+item.imageslink)" alt="">
+                            </a>
+                            <div class="product-details">
+                                <h6>
+                                    @item.name
+                                </h6>
+                                <div class="price">
+                                    <h6>@item.price.ToString("#,## VNĐ")</h6>
+                                    <h6 class="l-through">@item.pricebefore.ToString("#,## VNĐ")</h6>
+                                </div>
+
+                            </div>
+</div>
+                </div>
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>@ShoesProject.Resources.Data.TrustedProduct</h1>
+                        <p>
+                            @ShoesProject.Resources.Data.TextSampleProduct2
+                        </p>
+                    </div>
+            </div>
+            <div class="row">
+                @foreach (var item2 in lstSP.OrderBy(n=> n.price).Take(8))
+                {
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <a href="@Url.Action("ChiTietSanPham","SanPham", new { id = item2.id })">
+                            <img class="img-fluid" src="@Url.Content("~/"+item2.imageslink)" alt="">
+                        </a>
+                        <div class="product-details">
+                            <h6>
+                                @item2.name
+                            </h6>
+                            <div class="price">
+                                <h6>@item2.price.ToString("#,## VNĐ")</h6>
+                                <h6 class="l-through">@item2.pricebefore.ToString("#,## VNĐ")</h6>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#homeMenu").attr('class', 'nav-item active');
+</script>
+<!-- end product Area -->

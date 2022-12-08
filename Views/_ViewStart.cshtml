@@ -1,0 +1,6 @@
+﻿@{
+    Layout = "Home/Index.cshtml";
+    if(!string.IsNullOrEmpty(Request["lang"])) {
+        Culture = UICulture = Request["lang"];
+            }
+}
