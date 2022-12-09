@@ -19,7 +19,7 @@
         <div id="content-header">
             <div id="breadcrumb">
                 <a href="Index" title="Go to Home"
-                   class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="Index" class="tip-bottom">Product</a> <a href="#" class="current">New Product</a>
+                   class="tip-bottom"><i class="icon-home"></i> Home &nbsp; ></a> <a href="Index" class="tip-bottom">Product &nbsp; ></a> <a href="#" class="current">New Product</a>
             </div>
             <h1>Create new product</h1>
         </div>
@@ -152,7 +152,7 @@
                     </div>
 
                 </div>
-                <div class="span6">
+                <div class="span6 option_span">
                     <div class="widget-box">
 
                         <div class="widget-title">
@@ -163,45 +163,47 @@
                         </div>
                         <div class="widget-content nopadding">
                             <img id="blah" src="#" alt="your image">
-                            <p id="imgInfo">You have no image!</p>
+                            <p id="imgInfo" style="padding-left: 15px">You have no image!</p>
                             <br />
                             <input type="file" id="imgInp" name="file" required><br />
                         </div>
-
-                        <div class="widget-title">
-                            <span class="icon">
-                                <i class="icon-align-justify"></i>
-                            </span>
-                            <h5>Option</h5>
-                        </div>
-                        <div class="widget-content nopadding">
-                            <div class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Color: </label>
-                                    <div class="controls">
-                                        <input type="text" class="span11"
-                                               name="optionName" placeholder="Number..." required />
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Size:</label>
-                                    <div class="controls">
-                                        <input type="number" class="span11"
-                                               name="sizeOption" placeholder="Number..." required />
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label">Price: </label>
-                                    <div class="controls">
-                                        <input type="number" class="span11"
-                                               name="priceOption" placeholder="Number..." required />
-                                    </div>
-                                </div>
+                        <div>
+                            <div class="widget-title">
+                                <span class="icon">
+                                    <i class="icon-align-justify"></i>
+                                </span>
+                                <h5 style="display: inline-block">Option</h5>
+                                <button onclick="createOptionHTML()" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid #27a9e3; border-radius: 3px; color: #27a9e3; background: white ">+</button>
                             </div>
-                            <img id="blahOp" class="blahOp" src="#" alt="your image">
-                            <p id="imgInfoOp" class="imgInfoOp">You have no image!</p>
-                            <br />
-                            <input type="file" id="imgInpOp" name="fileImgOption" class="imgInpOp" required><br />
+                            <div class="widget-content nopadding">
+                                <div class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label">Color: </label>
+                                        <div class="controls">
+                                            <input type="text" class="span11"
+                                                   name="optionName" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Size:</label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="sizeOption" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Price: </label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="priceOption" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <img id="blahOp" class="blahOp" src="#" alt="your image">
+                                <p id="imgInfoOp" class="imgInfoOp" style="padding-left:15px">You have no image!</p>
+                                <br />
+                                <input type="file" id="imgInpOp" name="fileImgOption" class="imgInpOp" required><br />
+                            </div>
                         </div>
 
 
@@ -246,7 +248,7 @@
                                         <hr>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
-                                            <button type="submit" class="btn btn-success">
+                                            <button type="submit" class="btn btn-success" id="submit">
                                                 Create
                                             </button>
 
@@ -289,12 +291,20 @@
 <script src="~/Scripts/Admin/jquery.peity.min.js"></script>
 <script src="~/Scripts/Admin/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript">
+    let form = document.querySelector('form');
+    form.onsubmit = (e) => {
+        let smt = e.submitter;
+        console.log(smt)
+        console.log(smt.id)
+        if (smt.id == "submit") return true;
+        else return false;
+    }
+
     $('#blah').hide();
     $("#imgInfo").show();
     let imgs = $('.blahOp');
     for (let i = 0; i < imgs.length;i++) {
         imgs[i].style.display = 'none';
-        console.log("hehe" + i)
     }
 
     let imgInpOp = document.querySelectorAll('.imgInpOp');
@@ -308,7 +318,6 @@
             reader.onload = function (e) {
                 img.src = e.target.result;
             }
-            console.log(2)
             img.style.display = 'inline';
             imgInfo.style.display = 'none';
             reader.readAsDataURL(input.files[0]);
@@ -323,12 +332,60 @@
         imgInpOp[i].onchange = function () {
             readURL(imgInpOp[i], images[i], imgInfo[i]);
         }
-        console.log(1)
     }
 
     $("#imgInp").change(function () {
         readURL(this, document.querySelector('#blah'), document.querySelector("#imgInfo"));
     });
+    let option_span = document.querySelector('.option_span .widget-box')
+    let optionHTML = `<div><div class="widget-title option_shoe">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                            <h5 style="display: inline-block">Option</h5>
+                            <button onclick="deleteOptionHTML(this)" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid red; color: red; border-radius: 3px; background: white ">-</button>
+                            <button onclick="createOptionHTML()" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid #27a9e3; border-radius: 3px; color: #27a9e3; background: white ">+</button>
+                        </div>
+                        <div class="widget-content nopadding option_shoe">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Color: </label>
+                                    <div class="controls">
+                                        <input type="text" class="span11"
+                                               name="optionName" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Size:</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="sizeOption" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Price: </label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="priceOption" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                            </div>
+                            <img id="blahOp" class="blahOp" src="#" alt="your image" style="display: none">
+                            <p id="imgInfoOp" class="imgInfoOp" style="padding-left:15px">You have no image!</p>
+                            <br />
+                            <div class="uploader" id="uniform-imgInpOp"><input type="file" id="imgInpOp" name="fileImgOption" class="imgInpOp" required="" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><br />
+                        </div></div>`
+
+    function createOptionHTML() {
+        option_span.innerHTML += optionHTML;
+    }
+
+    function deleteOptionHTML(e) {
+        let p = e.parentElement.parentElement;
+        p.remove();
+    }
+
+
 
 </script>
 <script>
