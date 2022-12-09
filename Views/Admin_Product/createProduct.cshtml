@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
-<script src="~/ckeditor5-build-classic/ckeditor.js"></script>
+<script src="~/plugin/plugin/ckeditor/ckeditor.js"></script>
 <form action="AddProduct" method="post" enctype="multipart/form-data">
     <!--Header-part-->
     <div id="header">
@@ -266,11 +266,7 @@
     </div>
 </form>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor')
     
     
 </script>
@@ -291,24 +287,16 @@
 <script type="text/javascript">
     $('#blah').hide();
     $("#imgInfo").show();
-    let imgs = $('.blahOP');
+    let imgs = $('.blahOp');
     for (let i = 0; i < imgs.length;i++) {
         imgs[i].style.display = 'none';
+        console.log("hehe" + i)
     }
-</script>
-<script>
-    $('.textarea_editor').wysihtml5();
-    $("#myBtn").click(function () {
-        $("#myModal").modal("show");
-    })
-    $("#productMenu").attr('class', 'active');
-// $(document).ready(function(){
-//   // Show the Modal on load
-//   // $("#myModal").modal("show");
 
-//   // Hide the Modal
-// ;
-// });
+    let imgInpOp = document.querySelectorAll('.imgInpOp');
+    let images = document.querySelectorAll('.blahOp');
+    let imgInfo = $('.imgInfoOp');
+
     function readURL(input, img, imgInfo) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -316,25 +304,43 @@
             reader.onload = function (e) {
                 img.src = e.target.result;
             }
-            img.style.display='block';
+            console.log(2)
+            img.style.display = 'block';
             imgInfo.style.display = 'none';
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-    let imgInp = $('.imgInpOp');
-    let img = $('.blahOp');
-    let imgInfo = $('.imgInfoOp');
-    for (let i = 0; i < imgInp.length; i++) {
-        imgInp[i].onchange=function () {
-            readURL(this, img[i], imgInfo[i]);
+
+    console.log(images);
+    console.log(imgInpOp);
+    for (let i = 0; i < images.length; i++) {
+        images[i].style.display = 'none';
+    }
+
+    for (let i = 0; i < imgInpOp.length; i++) {
+        imgInpOp[i].onchange = function () {
+            readURL(this, images[i], imgInfo[i]);
         }
         console.log(1)
     }
 
-
-
     $("#imgInp").change(function () {
         readURL(this, $('#blah'), $("#imgInfo"));
     });
+
+</script>
+<script>
+    
+
+
+   
+
+    $('.textarea_editor').wysihtml5();
+    $("#myBtn").click(function () {
+        $("#myModal").modal("show");
+    })
+    $("#productMenu").attr('class', 'active');
+
+    
 </script>
