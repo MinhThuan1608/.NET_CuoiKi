@@ -699,3 +699,5 @@ D:\CodeC_Net\SourceCode\ShoesProject\obj\Debug\ShoesProject.dll
 D:\CodeC_Net\SourceCode\ShoesProject\obj\Debug\ShoesProject.pdb
 D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.dll
 D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.pdb
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.pdb
