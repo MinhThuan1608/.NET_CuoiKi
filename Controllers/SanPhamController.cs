@@ -9,6 +9,13 @@ using System.Net;
 using PagedList;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Web.ModelBinding;
+using System.Drawing;
+
+public class CatParam
+{
+    public string category { get; set; }
+}
 
 namespace ShoeProject.Controllers
 {
@@ -18,27 +25,44 @@ namespace ShoeProject.Controllers
         // GET: SanPham
         ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
         //Xây dựng trang danh sách sản phẩm
-        public ActionResult SanPham(int?page)
+        public ActionResult SanPham(int? page, string category = null, string size = null , string color = null, double priceLower = 0, double priceUpper = 3000000)
         {
             //Load danh sách sản phẩm
             var lstSP = db.shoes;
-            if (lstSP.Count() == 0)
+            if (lstSP.Count() == 0) 
             {
                 return HttpNotFound();
             }
-
             //Thực hiện chức năng phân trang
             //tạo biến số sản phẩm trên trang
             if (Request.HttpMethod != "GET")
             {
                 page = 1;
-            }
+            }       
             int PageSize = 12;
             //tại biến thứ 2 số trang hiện tại
             int PageNumber = (page ?? 1);
-           
+            if (category == null)
+            {
+                if (size == null && color == null)
+                {
+                    return View(lstSP.Where(n => n.price >= priceLower && n.price <= priceUpper).OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
+                }
+                
+                else if (size != null && color!=null)
+                {
+                    return View(lstSP.Where(n => n.price > priceLower && n.price < priceUpper && n.color==color && n.size == size).OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
+                }
+                else if(size != null && color == null)
+                {
+                    return View(lstSP.Where(n => n.price > priceLower && n.price < priceUpper && n.size == size).OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
+                }
+                else return View(lstSP.Where(n => n.price > priceLower && n.price < priceUpper && n.color == color).OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
+            } else
+            {
+                return View(lstSP.Where(n => n.category == category).OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
+            }
 
-            return View(lstSP.OrderBy(n => n.id).ToPagedList(PageNumber, PageSize));
         }
 
         [HttpGet]
@@ -59,8 +83,8 @@ namespace ShoeProject.Controllers
             System.Diagnostics.Debug.WriteLine("Tong so lan phai doc toi da: " + (totalCount / 6));
             return View(t);
         }
-
-        [HttpPost]
+        
+            [HttpPost]
         public JsonResult SearchProduct(AJAXRequest req)
         {
             List<sho> listSearched = db.shoes.Where(x => x.name.ToLower().Contains(req.text.ToLower())).ToList();
