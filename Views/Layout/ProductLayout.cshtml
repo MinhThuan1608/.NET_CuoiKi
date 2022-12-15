@@ -54,22 +54,22 @@
                     <div class="head">@ShoesProject.Resources.Data.BrowseCategories</div>
                         <ul class="main-categories">
                             <li class="main-nav-list">
-                                <a href="#">
+                                <a href="@Url.Action("SanPham")">
                                     <span class="lnr lnr-arrow-right"></span>Tất cả sản phẩm
                                 </a>
                             </li>
                             <li class="main-nav-list">
-                                <a href="#">
+                                <a href="@Url.Action("SanPham", new {category = "Converse"})">
                                     <span class="lnr lnr-arrow-right"></span>Converse
                                 </a>
                             </li>
                             <li class="main-nav-list">
-                                <a href="#">
+                                <a href="@Url.Action("SanPham", new {category = "Vans"})">
                                     <span class="lnr lnr-arrow-right"></span>Vans
                                 </a>
                             </li>
                             <li class="main-nav-list">
-                                <a href="#">
+                                <a href="@Url.Action("SanPham", new {category = "Palladium"})">
                                     <span class="lnr lnr-arrow-right"></span>Palladium
                                 </a>
                             </li>
@@ -206,40 +206,82 @@
                         <div class="head">Size</div>
                         <form action="#">
                             <ul>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="36" name="size"><label for="36">36</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="37" name="size"><label for="37">37</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="38" name="size"><label for="38">38</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="39" name="size"><label for="39">39</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="40" name="size"><label for="40">40</label></li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="36" name="size" value="36">36</li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="37" name="size" value="37">37</li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="38" name="size" value="38">38</li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="39" name="size" value="39">39</li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="40" name="size" value="40">40</li>
                             </ul>
                         </form>
                     </div>
                     <div class="common-filter">
                         <div class="head">Màu</div>
-                        <form action="#">
+                        <form>
                             <ul>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="white" name="color"><label for="white">Trắng</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Đen</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="red" name="color"><label for="red">Đỏ</label></li>
-                                <li class="filter-list"><input class="pixel-radio" type="radio" id="yellow" name="color"><label for="red">Vàng</label></li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="white" name="color" value="white"><label for="white">Trắng</label></li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color" value="black"><label for="black">Đen</label></li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="red" name="color" value="red"><label for="red">Đỏ</label></li>
+                                <li class="filter-list"><input class="pixel-radio" type="radio" id="yellow" name="color" value="yellow"><label for="red">Vàng</label></li>
                             </ul>
                         </form>
                     </div>
-
-
                     <div class="common-filter">
                         <div class="head">Giá:</div>
                         <div class="price-range-area">
                             <div id="price-range"></div>
                             <div class="value-wrapper d-flex">
                                 <div class="price">Giá: </div>
-                                <div id="lower-value"></div>
+                                <div id="lower-value"></div><span>đ</span>
                                 <div class="to">đến</div>
-                                <div id="upper-value"></div>
+                                <div id="upper-value"></div><span>đ</span>
                             </div>
-                               
+
                         </div>
                     </div>
+                    <div class="common-filter">
+                        <div style="display: flex; justify-content: center; margin-top:30px">
+                            <button type="submit" id="btn" onclick="myFunction()">Lọc</button>
+                        </div>
+                    </div>
+                    <p id="demo"></p>
+                    <script>
+                        function myFunction() {
+                            var size = document.getElementsByName("size");
+                            var colorRadio = document.getElementsByName("color");
+                            var lowervalue = (document.getElementById("lower-value").innerHTML)/1.0;
+                            var uppervalue = (document.getElementById("upper-value").innerHTML)/1.0;
+                            var numberSize = null;
+                            var textColor = null;
+                            for (i = 0; i < size.length; i++) {
+                                if (size[i].checked) {
+                                    numberSize = size[i].value;
+                                    break;
+                                }
+                            }
+                            for (j = 0; j < colorRadio.length; j++) {
+                                if (colorRadio[j].checked) {
+                                    textColor = colorRadio[j].value;
+                                    break;
+                                }
+                            }
+                            var link;
+                            if (textColor == null && numberSize == null) {
+                                link = '@Url.Action("SanPham")?priceLower=' + lowervalue + '&priceUpper=' + uppervalue;
+                            }
+                            else if (textColor == null && numberSize != null) {
+                                link = '@Url.Action("SanPham")?size=' + numberSize + '&priceLower=' + lowervalue + '&priceUpper=' + uppervalue;
+                            }
+                            else if (textColor != null && numberSize == null) {
+                                link = '@Url.Action("SanPham")?color=' + textColor + '&priceLower=' + lowervalue + '&priceUpper=' + uppervalue;
+                            }
+                            else link = '@Url.Action("SanPham")?color=' + textColor + '&size=' + numberSize + '&priceLower=' + lowervalue + '&priceUpper=' + uppervalue;
+                            location.replace(link);
+                        }
+
+
+
+                    </script>
+                    
                     @*
         <div class="common-filter">
             <div class="head">Brands</div>
@@ -291,7 +333,7 @@
         </div>
                     *@
                 </div>
-             </div> 
+                </div> 
             <div class="col-xl-9 col-lg-8 col-md-7">
                 @RenderBody()
             </div>
