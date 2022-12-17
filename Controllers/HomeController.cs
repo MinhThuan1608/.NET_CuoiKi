@@ -12,7 +12,7 @@ namespace ShoesProject.Controllers
     public class HomeController : Controller
     {
 
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         public ActionResult Index()
         {
             // Lay ra 1 tai khoan trong db dua tren username

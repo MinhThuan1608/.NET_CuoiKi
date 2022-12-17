@@ -17,7 +17,7 @@ namespace ShoeProject.Controllers
     public class GioHangController : Controller
     {
         // GET: GioHang
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         private PayPal.Api.Payment payment;
         public ActionResult Index()
         {

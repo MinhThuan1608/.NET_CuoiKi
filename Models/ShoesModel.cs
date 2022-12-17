@@ -29,11 +29,13 @@ namespace ShoesProject.Models
         public string description { get; set; }
         public Nullable<int> rate { get; set; }
         public string status { get; set; }
+        public string numoption { get;set; }
+        public string details { get; set; }
 
 
-        [DataType(DataType.Upload)]
-        [Display(Name = "Upload File")]
-        [Required(ErrorMessage = "Please choose file to upload.")]
-        public string file { get; set; }
+        //[DataType(DataType.Upload)]
+        //[Display(Name = "Upload File")]
+        //[Required(ErrorMessage = "Please choose file to upload.")]
+        //public string file { get; set; }
     }
 }

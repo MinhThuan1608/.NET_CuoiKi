@@ -10,7 +10,7 @@ namespace ShoesProject.Controllers
     [AllowAnonymous]
     public class RegisterController : Controller
     {
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
 
 
 

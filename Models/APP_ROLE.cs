@@ -18,6 +18,7 @@ namespace ShoesProject.Models
         {
             this.USER_ROLE = new HashSet<USER_ROLE>();
             this.USER_ROLE1 = new HashSet<USER_ROLE>();
+            this.USER_ROLE2 = new HashSet<USER_ROLE>();
         }
     
         public long ROLE_ID { get; set; }
@@ -25,5 +26,6 @@ namespace ShoesProject.Models
     
         public virtual ICollection<USER_ROLE> USER_ROLE { get; set; }
         public virtual ICollection<USER_ROLE> USER_ROLE1 { get; set; }
+        public virtual ICollection<USER_ROLE> USER_ROLE2 { get; set; }
     }
 }

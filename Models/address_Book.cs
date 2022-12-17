@@ -20,5 +20,6 @@ namespace ShoesProject.Models
         public string status { get; set; }
     
         public virtual account account { get; set; }
+        public virtual account account1 { get; set; }
     }
 }

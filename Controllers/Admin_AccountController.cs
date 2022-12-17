@@ -17,7 +17,7 @@ namespace ShoesProject.Controllers
         public ActionResult Index()
         {
             
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             List<AccountAdminModel> listAcAdMo = new List<AccountAdminModel>();
             List<APP_USER> list = db.APP_USER.ToList();
             foreach(APP_USER app in list)
@@ -38,7 +38,7 @@ namespace ShoesProject.Controllers
 
         public ActionResult ViewInfo(String id)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             account acc = db.accounts.Find(id);
             System.Diagnostics.Debug.WriteLine("Username dang doc la: "+id);
             AccountDetailsAdminModel accDetails = new AccountDetailsAdminModel();
@@ -64,7 +64,7 @@ namespace ShoesProject.Controllers
 
         public ActionResult SaveInfo(AccountDetailsAdminModel accDetails)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             APP_USER app = db.APP_USER.SingleOrDefault(x => x.USER_NAME == accDetails.username);
             if (accDetails.selectStatus == "ACTIVE")
                 app.ENABLED = true;
@@ -81,7 +81,7 @@ namespace ShoesProject.Controllers
         public string getRoles(String username)
         {
             string result = "";
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             APP_USER acc = db.APP_USER.SingleOrDefault(x => x.USER_NAME == username);
             List<USER_ROLE> listRole = db.USER_ROLE.Where(x => x.USER_ID == acc.USER_ID).ToList();
             foreach(USER_ROLE user in listRole)

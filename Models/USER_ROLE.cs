@@ -20,7 +20,9 @@ namespace ShoesProject.Models
     
         public virtual APP_ROLE APP_ROLE { get; set; }
         public virtual APP_ROLE APP_ROLE1 { get; set; }
+        public virtual APP_ROLE APP_ROLE2 { get; set; }
         public virtual APP_USER APP_USER { get; set; }
         public virtual APP_USER APP_USER1 { get; set; }
+        public virtual APP_USER APP_USER2 { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ShoeProject.Controllers
     public class SanPhamController : Controller
     {
         // GET: SanPham
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         //Xây dựng trang danh sách sản phẩm
         public ActionResult SanPham(int?page)
         {

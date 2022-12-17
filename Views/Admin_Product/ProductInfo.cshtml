@@ -13,7 +13,7 @@
 <!--close-Header-part-->
 <!--top-Header-menu-->
 <!--sidebar menu-->
-
+<script src="~/plugin/plugin/ckeditor/ckeditor.js"></script>
 <form action="/Admin_Product/SaveInfo" method="post" enctype="multipart/form-data">
     <div id="content">
         <div id="content-header">
@@ -36,6 +36,10 @@
                             <button id="editButton" type="button" class="btn btn-info"
                                     onclick="enableFixing()">
                                 Edit
+                            </button>
+                            <button id="cancelButton" type="button" class="btn btn-info"
+                                    onclick="cancelFixing()">
+                                Cancel
                             </button>
                         </div>
                         <div class="widget-content nopadding">
@@ -163,7 +167,7 @@
                                     <div class="controls">
                                         <textarea disabled class="span11" rows="5"
                                                   value="@Model.description" name="description"
-                                                  placeholder="Enter new description..."></textarea>
+                                                  placeholder="Enter new description...">@Model.description</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -183,8 +187,72 @@
                         <div class="widget-content nopadding">
                             <img id="blah" src="~/@Model.imageslink" alt="your image">
 
-                            <input type="file" id="imgInp" name="file"><br />
+                            <input type="file" id="imgInp" name="file[0]"><br />
                         </div>
+                         @if (ViewBag.options != null) {
+                             var count = 1;
+                             foreach (var op in ViewBag.options)
+                             {
+                            <div class="widget-title">
+                                <span class="icon">
+                                    <i class="icon-align-justify"></i>
+                                </span>
+                                <h5 style="display: inline-block">Option</h5>
+                                <button onclick="createOptionHTML()" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid #27a9e3; border-radius: 3px; color: #27a9e3; background: white ">+</button>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label">Color: </label>
+                                        <div class="controls">
+                                            <input disabled type="text" class="span11"
+                                                   name="coloroption1" placeholder="Color..." value="@op.color" required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Size:</label>
+                                        <div class="controls">
+                                            <input disabled type="number" class="span11"
+                                                   name="sizeoption1" placeholder="Number..." value="@op.size" required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Price: </label>
+                                        <div class="controls">
+                                            <input disabled type="number" class="span11"
+                                                   name="priceoption1" placeholder="Number..." value="@op.price" required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Quantity: </label>
+                                        <div class="controls">
+                                            <input disabled type="number" class="span11"
+                                                   name="quantityoption1" placeholder="Number..." value="@op.quantity" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="blahOp" src="~/@op.img" alt="your image">
+                                <br />
+                                <input type="file" name="file[@count]" class="imgInpOp span11" required><br />
+                            </div>
+                                 count++;
+                             }}
+                    </div>
+                </div>
+                <div class="span6" style="margin-left: 0; width:100%;">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                            <h5>Description</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <textarea id="editor" name="details" value="@Model.details">
+                            @Model.details
+                            </textarea>
+                        </div>
+
                         <div class="widget-title">
                             <span class="icon">
                                 <i class="icon-align-justify"></i>
@@ -255,6 +323,7 @@
                                 </div>
 
 
+
                             </div>
 
                         </div>
@@ -265,6 +334,9 @@
         </div>
     </div>
 </form>
+<script>
+    CKEDITOR.replace('editor')
+</script>
 <script src="~/Scripts/Admin/jquery.min.js"></script>
 <script src="~/Scripts/Admin/jquery.ui.custom.js"></script>
 <script src="~/Scripts/Admin/bootstrap.min.js"></script>
@@ -284,11 +356,24 @@
     function enableFixing() {
         $('#myBtnSave').removeAttr('disabled');
         $("#editButton").hide();
+        $('.imgInpOp').show();
+
         $("#imgInp").show();
         $(".span11").prop("disabled", false);
+        $('#cancelButton').show();
     }
+    function cancelFixing() {
+        $('#myBtnSave').attr('disabled', 'disabled');
+        $('#imgInp').hide();
+        $('.imgInpOp').hide();
+        $("#editButton").show();
+        $('#cancelButton').hide();
+        $(".span11").prop("disabled", true);
+    }
+    $('#cancelButton').hide();
+    $('.imgInpOp').hide();
 
-    // For saving image
+    
     $('#myBtnSave').attr('disabled', 'disabled');
     $('#imgInp').hide();
     $('.textarea_editor').wysihtml5();

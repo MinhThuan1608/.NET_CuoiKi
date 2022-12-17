@@ -14,7 +14,27 @@ namespace ShoesProject.Models
     
     public partial class option
     {
-        public double minsup { get; set; }
-        public double minconf { get; set; }
+        public string id { get; set; }
+        public string id_shoe { get; set; }
+        public string color { get; set; }
+        public int size { get; set; }
+        public double price { get; set; }
+        public int quantity { get; set; }
+        public string img { get; set; }
+    
+        public virtual sho sho { get; set; }
+
+        public option() { }
+
+        public option(string id, string id_shoe, string color, int size, double price, int quantity, string img)
+        {
+            this.id = id;
+            this.id_shoe = id_shoe;
+            this.color = color;
+            this.size = size;
+            this.price = price;
+            this.quantity = quantity;
+            this.img = img;
+        }
     }
 }

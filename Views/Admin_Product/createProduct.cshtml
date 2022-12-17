@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
+<script src="~/plugin/plugin/ckeditor/ckeditor.js"></script>
 <form action="AddProduct" method="post" enctype="multipart/form-data">
     <!--Header-part-->
     <div id="header">
@@ -18,7 +19,7 @@
         <div id="content-header">
             <div id="breadcrumb">
                 <a href="Index" title="Go to Home"
-                   class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="Index" class="tip-bottom">Product</a> <a href="#" class="current">New Product</a>
+                   class="tip-bottom"><i class="icon-home"></i> Home &nbsp; ></a> <a href="Index" class="tip-bottom">Product &nbsp; ></a> <a href="#" class="current">New Product</a>
             </div>
             <h1>Create new product</h1>
         </div>
@@ -42,13 +43,7 @@
                                                placeholder="Text..." required />
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">Size :</label>
-                                    <div class="controls">
-                                        <input type="number" class="span11" name="size"
-                                               placeholder="Number..." requried />
-                                    </div>
-                                </div>
+                               
                                 <div class="control-group">
                                     <label class="control-label">Material: </label>
                                     <div class="controls">
@@ -145,7 +140,6 @@
                                                name="weight" placeholder="Number..." required />
                                     </div>
                                 </div>
-
                                 <div class="control-group">
                                     <label class="control-label">Description: </label>
                                     <div class="controls">
@@ -156,12 +150,13 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
-
-                <div class="span6">
+                <div class="span6 option_span">
                     <div class="widget-box">
+
                         <div class="widget-title">
                             <span class="icon">
                                 <i class="icon-align-justify"></i>
@@ -169,11 +164,76 @@
                             <h5>Image of product</h5>
                         </div>
                         <div class="widget-content nopadding">
-                            <img id="blah" src="#" alt="your image">
-                            <p id="imgInfo">You have no image!</p>
+                            <img id="blah" src="" alt="your image">
+                            <p id="imgInfo" style="padding-left: 15px">You have no image!</p>
                             <br />
-                            <input type="file" id="imgInp" name="file" required><br />
+                            <input type="file" id="imgInp" name="file[0]" required><br />
                         </div>
+                        <input type="hidden" name="numoption" value="1" id="num_option"/>
+                        <div class="option_div">
+                            <div class="widget-title">
+                                <span class="icon">
+                                    <i class="icon-align-justify"></i>
+                                </span>
+                                <h5 style="display: inline-block">Option</h5>
+                                <button onclick="createOptionHTML()" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid #27a9e3; border-radius: 3px; color: #27a9e3; background: white ">+</button>
+                            </div>
+                            <div class="widget-content nopadding">
+                                <div class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label">Color: </label>
+                                        <div class="controls">
+                                            <input type="text" class="span11"
+                                                   name="coloroption1" placeholder="Color..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Size:</label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="sizeoption1" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Price: </label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="priceoption1" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Quantity: </label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="quantityoption1" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <img id="blahOp" class="blahOp" src="" alt="your image">
+                                <p id="imgInfoOp" class="imgInfoOp" style="padding-left:15px">You have no image!</p>
+                                <br />
+                                <input type="file" id="imgInpOp" name="file[1]" class="imgInpOp" required><br />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="span6" style="margin-left: 0; width:100%;">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                            <h5>Description</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <textarea id="editor" name="details">
+                            
+                            </textarea>
+                        </div>
+
                         <div class="widget-title">
                             <span class="icon">
                                 <i class="icon-align-justify"></i>
@@ -194,7 +254,7 @@
                                         <hr>
                                         <div class="container">
                                             <!-- Button to Open the Modal -->
-                                            <button type="submit" class="btn btn-success">
+                                            <button type="submit" class="btn btn-success" id="submit">
                                                 Create
                                             </button>
 
@@ -210,10 +270,16 @@
                     </div>
                 </div>
 
+                
+
+
             </div>
         </div>
     </div>
 </form>
+<script>
+    CKEDITOR.replace('editor')
+</script>
 <script src="~/Scripts/Admin/jquery.min.js"></script>
 <script src="~/Scripts/Admin/jquery.ui.custom.js"></script>
 <script src="~/Scripts/Admin/bootstrap.min.js"></script>
@@ -229,8 +295,136 @@
 <script src="~/Scripts/Admin/jquery.peity.min.js"></script>
 <script src="~/Scripts/Admin/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript">
+    let numOption = document.querySelector('#num_option')
+    let form = document.querySelector('form');
+    let numOp = 1;
+    form.onsubmit = (e) => {
+        let smt = e.submitter;
+        console.log(smt)
+        console.log(smt.id)
+        if (smt.id == "submit") return true;
+        else return false;
+    }
+
     $('#blah').hide();
     $("#imgInfo").show();
+    let imgs = $('.blahOp');
+    for (let i = 0; i < imgs.length;i++) {
+        imgs[i].style.display = 'none';
+    }
+
+    let imgInpOp = document.querySelectorAll('.imgInpOp');
+    let images = document.querySelectorAll('.blahOp');
+    let imgInfo = document.querySelectorAll('.imgInfoOp');
+
+    function readURL(input, img, imgInfo) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                img.src = e.target.result;
+            }
+            img.style.display = 'inline';
+            imgInfo.style.display = 'none';
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function addEventImage() {
+        imgInpOp = document.querySelectorAll('.imgInpOp');
+        images = document.querySelectorAll('.blahOp');
+        imgInfo = document.querySelectorAll('.imgInfoOp');
+
+        for (let i = 0; i < imgInpOp.length; i++) {
+            imgInpOp[i].onchange = function () {
+                readURL(imgInpOp[i], images[i], imgInfo[i]);
+            }
+        }
+    }
+
+    addEventImage();
+
+    $("#imgInp").change(function () {
+        readURL(document.querySelector('#imgInp'), document.querySelector('#blah'), document.querySelector("#imgInfo"));
+    });
+    let option_span = document.querySelector('.option_span .widget-box')
+    function createOptionHTMLString(num) {
+        let optionHTML = `<div class="option_div"><div class="widget-title option_shoe">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                            <h5 style="display: inline-block">Option</h5>
+                            <button onclick="deleteOptionHTML(this)" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid red; color: red; border-radius: 3px; background: white ">-</button>
+                            <button onclick="createOptionHTML()" style="margin-top: 5px; float: right; margin-right: 5px; width: 24px; border: 1px solid #27a9e3; border-radius: 3px; color: #27a9e3; background: white ">+</button>
+                        </div>
+                        <div class="widget-content nopadding option_shoe">
+                            <div class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">Color: </label>
+                                    <div class="controls">
+                                        <input type="text" class="span11"
+                                               name="coloroption`+ num +`" placeholder="Color..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Size:</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="sizeoption`+num+`" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Price: </label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="priceoption`+num+`" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Quantity: </label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="quantityoption`+ num +`" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                            </div>
+                            <img class="blahOp" src="#" alt="your image" style="display: none">
+                            <p class="imgInfoOp" style="padding-left:15px">You have no image!</p>
+                            <br />
+                            <div class="uploader" id="uniform-imgInpOp"><input type="file" name="file[`+num+`]" class="imgInpOp" required="" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><br />
+                        </div></div>`
+        return optionHTML;
+
+    }
+    
+    function createOptionHTML() {
+        numOp++;
+        $('.option_span .widget-box').append(createOptionHTMLString(numOp));
+        addEventImage();
+        numOption.value = numOp;
+    }
+
+    function deleteOptionHTML(e) {
+        let p = e.parentElement.parentElement;
+        p.remove();
+        numOp--;
+        numOption.value = numOp;
+        reloadOption();
+    }
+
+    function reloadOption() {
+        let listOp = document.querySelectorAll('.option_div')
+        for (let i = 0; i < listOp.length; i++) {
+            let listInp = listOp[i].querySelectorAll('input')
+            listInp[0].name = 'coloroption' + (i + 1)
+            listInp[1].name = 'sizeoption' + (i + 1)
+            listInp[2].name = 'priceoption' + (i + 1)
+            listInp[3].name = 'fileimgoption' + (i + 1)
+        }
+    }
+
+
+
 </script>
 <script>
     $('.textarea_editor').wysihtml5();
@@ -238,11 +432,5 @@
         $("#myModal").modal("show");
     })
     $("#productMenu").attr('class', 'active');
-// $(document).ready(function(){
-//   // Show the Modal on load
-//   // $("#myModal").modal("show");
-
-//   // Hide the Modal
-// ;
-// });
+    
 </script>

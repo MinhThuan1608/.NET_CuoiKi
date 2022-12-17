@@ -12,7 +12,7 @@ namespace ShoesProject.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         Security.Security security = new Security.Security();
         static string urlParam = "/";
         // GET: Login

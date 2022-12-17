@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d0a381c821640abb3f6a26ef213e890" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.C_TransactionIndex_237b54d1_d71b_4693_9336_2c1897920f9b" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.account" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.address_Book" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.APP_ROLE" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.APP_USER" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.bill" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.bill_Details" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.cart" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.comment" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.option" Width="1.5" PointX="10" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.Persistent_Logins" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.replycomment" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.review" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.sho" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.USER_ROLE" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.viewHistory" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectWebBanGiayModel.findAssociation" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__address_B__usern__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__address_B__usern__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__APP_USER__USER_N__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__APP_USER__USER_N__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__USER_ROLE__ROLE___49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__USER_ROLE__ROLE___4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.USER_ROLE_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__USER_ROLE__USER___4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__USER_ROLE__USER___4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.USER_ROLE_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK_cart_shoes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectWebBanGiayModel.FK__options__id_shoe__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
