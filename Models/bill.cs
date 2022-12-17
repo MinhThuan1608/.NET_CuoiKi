@@ -22,7 +22,5 @@ namespace ShoesProject.Models
         public System.DateTime time { get; set; }
         public string note { get; set; }
         public string status { get; set; }
-
-       
     }
 }

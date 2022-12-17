@@ -17,6 +17,7 @@ namespace ShoesProject.Models
         public sho()
         {
             this.carts = new HashSet<cart>();
+            this.options = new HashSet<option>();
         }
     
         public string id { get; set; }
@@ -39,7 +40,9 @@ namespace ShoesProject.Models
         public string description { get; set; }
         public int rate { get; set; }
         public string status { get; set; }
+        public string details { get; set; }
     
         public virtual ICollection<cart> carts { get; set; }
+        public virtual ICollection<option> options { get; set; }
     }
 }

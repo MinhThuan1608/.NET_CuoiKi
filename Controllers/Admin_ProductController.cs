@@ -9,6 +9,7 @@ using System.Globalization;
 using ShoesProject.Utils;
 using System.IO;
 using System.Data;
+using System.Diagnostics;
 
 namespace ShoesProject.Controllers
 {
@@ -19,8 +20,8 @@ namespace ShoesProject.Controllers
         // GET: Admin_Product
         public ActionResult Index()
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
-            List<sho> listShoes = db.shoes.ToList();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
+            List<sho> listShoes = db.shoes.ToList();    
             return View(listShoes);
         }
 
@@ -29,12 +30,14 @@ namespace ShoesProject.Controllers
             ShoesModel sh = new ShoesModel();
             return View(sh);
         }
-        public ActionResult AddProduct(ShoesModel model, HttpPostedFileBase file)
+        [ValidateInput(false)]
+        public ActionResult AddProduct(ShoesModel model, List<HttpPostedFileBase> file, FormCollection collection)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             sho product = new sho();
-            
+            List<option> list = new List<option>();
             // Khi du lieu da nhap vao hop le
+            Debug.WriteLine(file.Count);
             if (ModelState.IsValid)
             {
                 CreateRandomID cr = new CreateRandomID();
@@ -57,18 +60,38 @@ namespace ShoesProject.Controllers
                 product.size = model.size;
                 product.status = model.status;
                 product.weight = model.weight;
-                product.width = model.width; 
-
+                product.width = model.width;
+                product.details = model.details;
+                Debug.WriteLine(model.details);
+                int numoption = int.Parse(model.numoption);
+                
                 // Save image product
-                if (file != null)
+                if (file != null && file.Count>0)
                 {
-                    string path = Path.Combine(Server.MapPath("~/img"), Path.GetFileName(product.id)+".jpg");
-                    file.SaveAs(path);
-                    product.imageslink = "img/" + product.id + ".jpg";
+                    string path = "";
+                    for (int i= 0;i < file.Count;i++) {
+                        Debug.WriteLine("num:" + i);
+                        if (i == 0) { 
+                            path = Path.Combine(Server.MapPath("~/img"), Path.GetFileName(product.id)+".jpg");
+                            product.imageslink = "img/" + product.id + ".jpg";
+                        } else {
+                            string opid = cr.newIDOption();
+                            path = Path.Combine(Server.MapPath("~/img"), Path.GetFileName(opid) + ".jpg");
+                            option opt = new option(opid, product.id, collection["coloroption" + i], int.Parse(collection["sizeoption" + i]), double.Parse(collection["priceoption" + i]), int.Parse(collection["quantityoption" + i]), "img/" + opid + ".jpg");
+                            product.options.Add(opt);
+                            opt.sho = product;
+                            list.Add(opt);
+                            
+                        }
+                        
+                        file[i].SaveAs(path);
+                    }
                 }
-
             }
-
+            foreach (var op in list)
+            {
+                db.options.Add(op);
+            }
             db.shoes.Add(product);
             db.SaveChanges();
             ViewBag.successSave = "Add product successfully!";
@@ -76,13 +99,12 @@ namespace ShoesProject.Controllers
         }
         public ActionResult ProductInfo(String id)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             sho product = db.shoes.SingleOrDefault(x => x.id == id);
+            List<option> options = db.options.Where(x => x.id_shoe.Equals(id)).ToList();
             System.Diagnostics.Debug.WriteLine("ID san pham dang doc la: " + id);
             ShoesModel result = new ShoesModel();
-          //  string newDate = DateTime.ParseExact(product.date., "dd/MM/yyyy", CultureInfo.InvariantCulture)
-        //.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
-
+          
             result.brand = product.brand;
             result.category = product.category;
             result.checkquality = product.checkquality;
@@ -102,6 +124,7 @@ namespace ShoesProject.Controllers
             result.status = product.status;
             result.weight = product.weight;
             result.width = product.width;
+            result.details = product.details;
 
             // Tao dropdown chon trang thai san pham
             List<String> status = new List<string>() {"AVAILABLE","COMING SOON","OUT OF STOCK" };
@@ -109,13 +132,14 @@ namespace ShoesProject.Controllers
             SelectList statusList = new SelectList(status);
             ViewBag.StatusList = statusList;
             ViewBag.st = status;
-
+            ViewBag.options = options;
+            
             return View(result);
         }
-
+        [ValidateInput(false)]
         public ActionResult SaveInfo(ShoesModel model, HttpPostedFileBase file)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             sho product = db.shoes.SingleOrDefault(x => x.id == model.id);
             
                 product.brand=model.brand;
@@ -136,6 +160,7 @@ namespace ShoesProject.Controllers
                 product.status=model.status;
                 product.weight=model.weight;
                 product.width=model.width;
+                product.details=model.details;
 
                 // Save image product
                 if (file != null)
@@ -159,8 +184,8 @@ namespace ShoesProject.Controllers
         }
 
         public ActionResult DeleteProduct(String id)
-        {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        {  
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             sho product = db.shoes.SingleOrDefault(x => x.id == id);
             db.shoes.Remove(product);
             db.SaveChanges();

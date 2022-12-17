@@ -1,6 +1,11 @@
 ﻿/**
+<<<<<<< HEAD
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license/
+=======
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
  */
 
 /**
@@ -10,6 +15,15 @@
  * If you would like to build CKEditor online again
  * (for example to upgrade), visit one the following links:
  *
+<<<<<<< HEAD
+ * (1) https://ckeditor.com/cke4/builder
+ *     Visit online builder to build CKEditor from scratch.
+ *
+ * (2) https://ckeditor.com/cke4/builder/d46a3a27ea2714415edffc43530293ac
+ *     Visit online builder to build CKEditor, starting with the same setup as before.
+ *
+ * (3) https://ckeditor.com/cke4/builder/download/d46a3a27ea2714415edffc43530293ac
+=======
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
@@ -17,6 +31,7 @@
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
  * (3) http://ckeditor.com/builder/download/50877b4c1fcbadd4a2c7659a7907c067
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -28,6 +43,13 @@ var CKBUILDER_CONFIG = {
 	skin: 'moono-lisa',
 	preset: 'full',
 	ignore: [
+<<<<<<< HEAD
+		'.DS_Store',
+		'.bender',
+		'.editorconfig',
+		'.gitattributes',
+		'.gitignore',
+=======
 		'.bender',
 		'bender.js',
 		'bender-err.log',
@@ -38,15 +60,33 @@ var CKBUILDER_CONFIG = {
 		'.gitattributes',
 		'.gitignore',
 		'gruntfile.js',
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'.idea',
 		'.jscsrc',
 		'.jshintignore',
 		'.jshintrc',
+<<<<<<< HEAD
+		'.mailmap',
+		'.npm',
+		'.nvmrc',
+		'.travis.yml',
+		'bender-err.log',
+		'bender-out.log',
+		'bender.ci.js',
+		'bender.js',
+		'dev',
+		'gruntfile.js',
+		'less',
+		'node_modules',
+		'package-lock.json',
+		'package.json',
+=======
 		'less',
 		'.mailmap',
 		'node_modules',
 		'package.json',
 		'README.md',
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'tests'
 	],
 	plugins : {
@@ -62,12 +102,23 @@ var CKBUILDER_CONFIG = {
 		'copyformatting' : 1,
 		'dialogadvtab' : 1,
 		'div' : 1,
+<<<<<<< HEAD
+		'easyimage' : 1,
+		'editorplaceholder' : 1,
+		'elementspath' : 1,
+		'enterkey' : 1,
+		'entities' : 1,
+		'exportpdf' : 1,
+		'filebrowser' : 1,
+		'find' : 1,
+=======
 		'elementspath' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
 		'filebrowser' : 1,
 		'find' : 1,
 		'flash' : 1,
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'floatingspace' : 1,
 		'font' : 1,
 		'format' : 1,
@@ -87,6 +138,11 @@ var CKBUILDER_CONFIG = {
 		'maximize' : 1,
 		'newpage' : 1,
 		'pagebreak' : 1,
+<<<<<<< HEAD
+		'pastefromgdocs' : 1,
+		'pastefromlibreoffice' : 1,
+=======
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'pastefromword' : 1,
 		'pastetext' : 1,
 		'preview' : 1,
@@ -104,11 +160,19 @@ var CKBUILDER_CONFIG = {
 		'stylescombo' : 1,
 		'tab' : 1,
 		'table' : 1,
+<<<<<<< HEAD
+		'tableselection' : 1,
+=======
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'tabletools' : 1,
 		'templates' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
+<<<<<<< HEAD
+		'uploadimage' : 1,
+=======
 		'wsc' : 1,
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'wysiwygarea' : 1
 	},
 	languages : {
@@ -131,6 +195,10 @@ var CKBUILDER_CONFIG = {
 		'en-gb' : 1,
 		'eo' : 1,
 		'es' : 1,
+<<<<<<< HEAD
+		'es-mx' : 1,
+=======
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		'et' : 1,
 		'eu' : 1,
 		'fa' : 1,

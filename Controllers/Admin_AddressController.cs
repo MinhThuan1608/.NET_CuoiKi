@@ -13,7 +13,7 @@ namespace ShoesProject.Controllers
     // Trang web quan ly tat ca don hang
     public class Admin_AddressController : Controller
     {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         // GET: Admin_Address
         public ActionResult Index()
         {
@@ -40,7 +40,8 @@ namespace ShoesProject.Controllers
                     aam.totalcost = (int)b.totalcost;
                     String address = db.address_Book.Find(b.idaddress).address;
                     aam.address = address;
-                    aam.datetime = b.time.ToString("HH:mm MMMM dd, yyyy");
+                    string v = b.time.ToString("HH:mm MMMM dd, yyyy");
+                    aam.datetime = v;
 
                     if (aam.status == "RECEIVED ORDER")
                         listBillModel.listReceived.Add(aam);
@@ -61,7 +62,7 @@ namespace ShoesProject.Controllers
             address_Book ab = db.address_Book.Find(billDB.idaddress);
             BillIem bi = new BillIem();
             bi.id = id;
-            bi.fullDateTime = billDB.time.ToString("HH:mm dd-MM-yyyy"); ;
+            bi.fullDateTime = billDB.time.ToString("HH:mm dd-MM-yyyy");
             bi.address = ab.address;
             bi.note = billDB.note;
             bi.payment = billDB.payment;
@@ -74,7 +75,7 @@ namespace ShoesProject.Controllers
                 sho sho = db.shoes.Find(item.idproduct);
                 bd.product = sho.name;
                 bd.price = sho.price.ToString("#,## VNĐ");
-                bd.quantity = item.quantity;
+                bd.quantity = (int)item.quantity;
                 billDetails.Add(bd);
             }
             bi.listBillDetails = billDetails;
@@ -86,7 +87,7 @@ namespace ShoesProject.Controllers
         [HttpPost]
         public JsonResult saveStatusBill(AJAXRequest req)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             bill bill = db.bills.Find(req.id);
             bill.status = req.status;
             db.Entry(bill).State = EntityState.Modified;
@@ -98,7 +99,7 @@ namespace ShoesProject.Controllers
         [HttpPost]
         public JsonResult sendMail(AJAXRequest req)
         {
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             bill bill = db.bills.Find(req.id);
             string status = req.status;
             account acc = db.accounts.Find(bill.username);

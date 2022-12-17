@@ -17,6 +17,6 @@ namespace ShoesProject.Models
         public string id { get; set; }
         public string username { get; set; }
         public string idproduct { get; set; }
-        public Nullable<System.DateTime> datemodify { get; set; }
+        public System.DateTime datemodify { get; set; }
     }
 }

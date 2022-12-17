@@ -43,13 +43,7 @@
                                                placeholder="Text..." required />
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">Size :</label>
-                                    <div class="controls">
-                                        <input type="number" class="span11" name="size"
-                                               placeholder="Number..." requried />
-                                    </div>
-                                </div>
+                               
                                 <div class="control-group">
                                     <label class="control-label">Material: </label>
                                     <div class="controls">
@@ -146,6 +140,14 @@
                                                name="weight" placeholder="Number..." required />
                                     </div>
                                 </div>
+                                <div class="control-group">
+                                    <label class="control-label">Description: </label>
+                                    <div class="controls">
+                                        <textarea class="span11" rows="5"
+                                                  name="description"
+                                                  placeholder="Enter new description..."></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -162,12 +164,13 @@
                             <h5>Image of product</h5>
                         </div>
                         <div class="widget-content nopadding">
-                            <img id="blah" src="#" alt="your image">
+                            <img id="blah" src="" alt="your image">
                             <p id="imgInfo" style="padding-left: 15px">You have no image!</p>
                             <br />
-                            <input type="file" id="imgInp" name="file" required><br />
+                            <input type="file" id="imgInp" name="file[0]" required><br />
                         </div>
-                        <div>
+                        <input type="hidden" name="numoption" value="1" id="num_option"/>
+                        <div class="option_div">
                             <div class="widget-title">
                                 <span class="icon">
                                     <i class="icon-align-justify"></i>
@@ -181,28 +184,35 @@
                                         <label class="control-label">Color: </label>
                                         <div class="controls">
                                             <input type="text" class="span11"
-                                                   name="optionName" placeholder="Number..." required />
+                                                   name="coloroption1" placeholder="Color..." required />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label">Size:</label>
                                         <div class="controls">
                                             <input type="number" class="span11"
-                                                   name="sizeOption" placeholder="Number..." required />
+                                                   name="sizeoption1" placeholder="Number..." required />
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label">Price: </label>
                                         <div class="controls">
                                             <input type="number" class="span11"
-                                                   name="priceOption" placeholder="Number..." required />
+                                                   name="priceoption1" placeholder="Number..." required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Quantity: </label>
+                                        <div class="controls">
+                                            <input type="number" class="span11"
+                                                   name="quantityoption1" placeholder="Number..." required />
                                         </div>
                                     </div>
                                 </div>
-                                <img id="blahOp" class="blahOp" src="#" alt="your image">
+                                <img id="blahOp" class="blahOp" src="" alt="your image">
                                 <p id="imgInfoOp" class="imgInfoOp" style="padding-left:15px">You have no image!</p>
                                 <br />
-                                <input type="file" id="imgInpOp" name="fileImgOption" class="imgInpOp" required><br />
+                                <input type="file" id="imgInpOp" name="file[1]" class="imgInpOp" required><br />
                             </div>
                         </div>
 
@@ -219,12 +229,8 @@
                             <h5>Description</h5>
                         </div>
                         <div class="widget-content nopadding">
-                            <textarea id="editor" name="description">
-                            <p></p>
-                            <p></p>
-                            <p></p>
-                            <p></p>
-                            <p></p>
+                            <textarea id="editor" name="details">
+                            
                             </textarea>
                         </div>
 
@@ -264,17 +270,12 @@
                     </div>
                 </div>
 
-                
-
-
             </div>
         </div>
     </div>
 </form>
 <script>
     CKEDITOR.replace('editor')
-    
-    
 </script>
 <script src="~/Scripts/Admin/jquery.min.js"></script>
 <script src="~/Scripts/Admin/jquery.ui.custom.js"></script>
@@ -291,7 +292,9 @@
 <script src="~/Scripts/Admin/jquery.peity.min.js"></script>
 <script src="~/Scripts/Admin/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript">
+    let numOption = document.querySelector('#num_option')
     let form = document.querySelector('form');
+    let numOp = 1;
     form.onsubmit = (e) => {
         let smt = e.submitter;
         console.log(smt)
@@ -324,21 +327,26 @@
         }
     }
 
-    for (let i = 0; i < images.length; i++) {
-        images[i].style.display = 'none';
-    }
+    function addEventImage() {
+        imgInpOp = document.querySelectorAll('.imgInpOp');
+        images = document.querySelectorAll('.blahOp');
+        imgInfo = document.querySelectorAll('.imgInfoOp');
 
-    for (let i = 0; i < imgInpOp.length; i++) {
-        imgInpOp[i].onchange = function () {
-            readURL(imgInpOp[i], images[i], imgInfo[i]);
+        for (let i = 0; i < imgInpOp.length; i++) {
+            imgInpOp[i].onchange = function () {
+                readURL(imgInpOp[i], images[i], imgInfo[i]);
+            }
         }
     }
 
+    addEventImage();
+
     $("#imgInp").change(function () {
-        readURL(this, document.querySelector('#blah'), document.querySelector("#imgInfo"));
+        readURL(document.querySelector('#imgInp'), document.querySelector('#blah'), document.querySelector("#imgInfo"));
     });
     let option_span = document.querySelector('.option_span .widget-box')
-    let optionHTML = `<div><div class="widget-title option_shoe">
+    function createOptionHTMLString(num) {
+        let optionHTML = `<div class="option_div"><div class="widget-title option_shoe">
                             <span class="icon">
                                 <i class="icon-align-justify"></i>
                             </span>
@@ -352,37 +360,64 @@
                                     <label class="control-label">Color: </label>
                                     <div class="controls">
                                         <input type="text" class="span11"
-                                               name="optionName" placeholder="Number..." required />
+                                               name="coloroption`+ num +`" placeholder="Color..." required />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Size:</label>
                                     <div class="controls">
                                         <input type="number" class="span11"
-                                               name="sizeOption" placeholder="Number..." required />
+                                               name="sizeoption`+num+`" placeholder="Number..." required />
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">Price: </label>
                                     <div class="controls">
                                         <input type="number" class="span11"
-                                               name="priceOption" placeholder="Number..." required />
+                                               name="priceoption`+num+`" placeholder="Number..." required />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Quantity: </label>
+                                    <div class="controls">
+                                        <input type="number" class="span11"
+                                               name="quantityoption`+ num +`" placeholder="Number..." required />
                                     </div>
                                 </div>
                             </div>
-                            <img id="blahOp" class="blahOp" src="#" alt="your image" style="display: none">
-                            <p id="imgInfoOp" class="imgInfoOp" style="padding-left:15px">You have no image!</p>
+                            <img class="blahOp" src="#" alt="your image" style="display: none">
+                            <p class="imgInfoOp" style="padding-left:15px">You have no image!</p>
                             <br />
-                            <div class="uploader" id="uniform-imgInpOp"><input type="file" id="imgInpOp" name="fileImgOption" class="imgInpOp" required="" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><br />
+                            <div class="uploader" id="uniform-imgInpOp"><input type="file" name="file[`+num+`]" class="imgInpOp" required="" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><br />
                         </div></div>`
+        return optionHTML;
 
+    }
+    
     function createOptionHTML() {
-        option_span.innerHTML += optionHTML;
+        numOp++;
+        $('.option_span .widget-box').append(createOptionHTMLString(numOp));
+        addEventImage();
+        numOption.value = numOp;
     }
 
     function deleteOptionHTML(e) {
         let p = e.parentElement.parentElement;
         p.remove();
+        numOp--;
+        numOption.value = numOp;
+        reloadOption();
+    }
+
+    function reloadOption() {
+        let listOp = document.querySelectorAll('.option_div')
+        for (let i = 0; i < listOp.length; i++) {
+            let listInp = listOp[i].querySelectorAll('input')
+            listInp[0].name = 'coloroption' + (i + 1)
+            listInp[1].name = 'sizeoption' + (i + 1)
+            listInp[2].name = 'priceoption' + (i + 1)
+            listInp[3].name = 'fileimgoption' + (i + 1)
+        }
     }
 
 

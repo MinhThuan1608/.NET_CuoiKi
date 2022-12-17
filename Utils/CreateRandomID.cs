@@ -20,5 +20,9 @@ namespace ShoesProject.Utils
         {
             return "CR" + Guid.NewGuid().ToString("N").Substring(0, 7).ToUpper();
         }
+        public String newIDOption()
+        {
+            return "OP" + Guid.NewGuid().ToString("N").Substring(0, 7).ToUpper();
+        }
     }
 }

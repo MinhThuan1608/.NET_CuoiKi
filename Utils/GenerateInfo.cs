@@ -9,7 +9,7 @@ namespace ShoesProject.Utils
 {
     public class GenerateInfo
     {
-        static ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        static ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         public static String getInfoBill(bill bill)
         {
             string result = "YOUR INFO BILL@";

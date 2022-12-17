@@ -9,7 +9,7 @@ namespace ShoesProject.Security
 {
     public class Security : RoleProvider
     {
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         public override string ApplicationName
         {
             get

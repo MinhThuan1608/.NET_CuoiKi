@@ -14,7 +14,7 @@ namespace ShoesProject.Controllers
     [Authorize(Roles = "USER,ADMIN")]
     public class ManageAccountController : Controller
     {
-        ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+        ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
         // GET: ManageAccount
         public ActionResult Index()
         {
@@ -206,7 +206,7 @@ namespace ShoesProject.Controllers
         {
             account acc = (account)Session["acc"];
 
-            ProjectWebBanGiayEntities1 db = new ProjectWebBanGiayEntities1();
+            ProjectWebBanGiayEntities db = new ProjectWebBanGiayEntities();
             List<address_Book> listAB = db.address_Book.Where(x => x.username == acc.username).ToList();
             List<bill> listBill = db.bills.Where(x => x.username == acc.username).ToList();
             List<BillIem> listReceivedBill = new List<BillIem>();

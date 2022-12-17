@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--<Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />-->
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShoesProject</RootNamespace>
     <AssemblyName>ShoesProject</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress>false</Use64BitIISExpress>
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -133,7 +134,9 @@
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
@@ -178,11 +181,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -264,93 +265,95 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\account.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountDetailsAdminModel.cs" />
     <Compile Include="Models\address_Book.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminAddressModel.cs" />
     <Compile Include="Models\AJAXRequest.cs" />
     <Compile Include="Models\AJAXRespone.cs" />
     <Compile Include="Models\APP_ROLE.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\APP_USER.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bill.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillDetails.cs" />
     <Compile Include="Models\BillIem.cs" />
     <Compile Include="Models\AccountAdminModel.cs" />
     <Compile Include="Models\bill_Details.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\cart.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\comment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Common\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Models\Common\MailHelper.cs" />
     <Compile Include="Models\C_TransactionIndex_237b54d1_d71b_4693_9336_2c1897920f9b.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\userDao.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\findAssociation.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ListAdminAddressModel.cs" />
     <Compile Include="Models\ManageAccountModel.cs" />
+    <Compile Include="Models\ModelEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEF.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\option.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\Persistent_Logins.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\replycomment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\review.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sho.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoesModel.cs" />
-    <Compile Include="Models\Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Text.cs" />
     <Compile Include="Models\USER_ROLE.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\viewHistory.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Data.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -832,15 +835,15 @@
     <Content Include="img\SL014.jpg" />
     <Content Include="img\SL015.jpg" />
     <Content Include="img\loading.gif" />
-    <Content Include="Models\Model.Context.tt">
+    <Content Include="Models\ModelEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>ModelEF.edmx</DependentUpon>
+      <LastGenOutput>ModelEF.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.tt">
+    <Content Include="Models\ModelEF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>ModelEF.edmx</DependentUpon>
+      <LastGenOutput>ModelEF.cs</LastGenOutput>
     </Content>
     <Content Include="plugin\plugin\ckeditor\adapters\jquery.js" />
     <Content Include="plugin\plugin\ckeditor\build-config.js" />
@@ -1926,12 +1929,15 @@
     <Content Include="fonts\Admin\font\fontawesome-webfont.ttf" />
     <Content Include="fonts\Admin\font\fontawesome-webfont.woff" />
     <Content Include="fonts\Admin\font\FontAwesome.otf" />
-    <EntityDeploy Include="Models\Model.edmx">
+    <Content Include="img\Admin\demo\Thumbs.db" />
+    <Content Include="img\Admin\icons\32\Thumbs.db" />
+    <Content Include="img\Admin\Thumbs.db" />
+    <EntityDeploy Include="Models\ModelEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelEF.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="Models\ModelEF.edmx.diagram">
+      <DependentUpon>ModelEF.edmx</DependentUpon>
     </Content>
     <Content Include="img\Admin\demo\Thumbs.db" />
     <Content Include="img\Admin\icons\32\Thumbs.db" />
@@ -1982,22 +1988,10 @@
     <Content Include="Views\Layout\SearchProductLayout.cshtml" />
     <Content Include="Views\SanPham\SearchProduct.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="plugin\plugin\ckeditor\plugins\scayt\CHANGELOG.md" />
-    <Content Include="plugin\plugin\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="plugin\plugin\ckeditor\plugins\scayt\README.md" />
-    <Content Include="plugin\plugin\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="plugin\plugin\ckeditor\plugins\wsc\README.md" />
-    <Content Include="plugin\plugin\ckeditor\samples\old\assets\posteddata.php" />
-    <Content Include="plugin\plugin\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="plugin\plugin\ckeditor\samples\old\sample_posteddata.php" />
-    <Content Include="plugin\plugin\ckeditor\samples\toolbarconfigurator\font\config.json" />
-    <Content Include="plugin\plugin\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
-    <Content Include="plugin\plugin\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
-    <Content Include="plugin\plugin\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
-    <Content Include="plugin\plugin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
-    <Content Include="plugin\plugin\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="plugin\plugin\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="plugin\plugin\ckfinder\userfiles\.htaccess" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -2012,9 +2006,15 @@
       <LastGenOutput>Data.vi-VN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -2036,16 +2036,19 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:50230/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target> -->
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

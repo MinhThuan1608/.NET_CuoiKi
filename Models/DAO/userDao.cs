@@ -10,11 +10,11 @@ namespace ShoesProject.Models.DAO
 {
     public class userDao
     {
-        private ProjectWebBanGiayEntities1 db;
+        private ProjectWebBanGiayEntities db;
 
         public userDao()
         {
-            this.db = new ProjectWebBanGiayEntities1();
+            this.db = new ProjectWebBanGiayEntities();
         }
         public bool checkExistUserName(string userName)
         {
