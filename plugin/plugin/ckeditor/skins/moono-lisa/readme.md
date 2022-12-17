@@ -3,7 +3,11 @@
 
 This skin has been made a **default skin** starting from CKEditor 4.6.0 and is maintained by the core developers.
 
+<<<<<<< HEAD
 For more information about skins, please check the [CKEditor Skin SDK](https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_intro.html)
+=======
+For more information about skins, please check the [CKEditor Skin SDK](http://docs.cksource.com/CKEditor_4.x/Skin_SDK)
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 documentation.
 
 Features
@@ -41,6 +45,12 @@ Other parts:
 License
 -------
 
+<<<<<<< HEAD
 Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
 
 For licensing, see LICENSE.md or [https://ckeditor.com/legal/ckeditor-oss-license](https://ckeditor.com/legal/ckeditor-oss-license)
+=======
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+
+For licensing, see LICENSE.md or [http://ckeditor.com/license](http://ckeditor.com/license)
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb

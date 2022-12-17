@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 SCAYT plugin for CKEditor 4
 =====================
 
@@ -24,6 +25,16 @@ The SCAYT plugin for CKEditor as a part of the free services supports the next l
 There are also additional languages and specialized dictionaries available for a commercial license, you can check the full list [here](https://webspellchecker.com/additional-dictionaries/).
 
 Get started
+=======
+CKEditor SCAYT Plugin
+=====================
+
+This plugin brings Spell Check As You Type (SCAYT) into up to CKEditor 4+.
+
+SCAYT is a "installation-less", using the web-services of [WebSpellChecker.net](http://www.webspellchecker.net/). It's an out of the box solution.
+
+Installation
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 ------------
 
 1. Clone/copy this repository contents in a new "plugins/scayt" folder in your CKEditor installation.
@@ -31,6 +42,7 @@ Get started
 
         config.extraPlugins = 'scayt';
 
+<<<<<<< HEAD
 That's all. SCAYT will appear on the editor toolbar under the ABC button and will be ready to use.
 
 Supported browsers
@@ -70,12 +82,23 @@ Reporting issues
 -------
 
 Please use the [SCAYT plugin for CKEditor 4 GitHub issue page](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues) to report bugs and feature requests. We will do our best to reply at our earliest convenience.
+=======
+That's all. SCAYT will appear on the editor toolbar and will be ready to use.
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 
 License
 -------
 
+<<<<<<< HEAD
 This plugin is licensed under the terms of any of the following licenses at your choice: [GPL](http://www.gnu.org/licenses/gpl.html), [LGPL](http://www.gnu.org/licenses/lgpl.html) and [MPL](http://www.mozilla.org/MPL/MPL-1.1.html).
 
 See LICENSE.md for more information.
 
 Developed by [WebSpellChecker](https://webspellchecker.com/) in cooperation with CKSource.
+=======
+Licensed under the terms of any of the following licenses at your choice: [GPL](http://www.gnu.org/licenses/gpl.html), [LGPL](http://www.gnu.org/licenses/lgpl.html) and [MPL](http://www.mozilla.org/MPL/MPL-1.1.html).
+
+See LICENSE.md for more information.
+
+Developed in cooperation with [WebSpellChecker.net](http://www.webspellchecker.net/).
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb

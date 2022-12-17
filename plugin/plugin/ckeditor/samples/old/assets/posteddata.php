@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <?php
 /*
+<<<<<<< HEAD
 Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
 ?>
 <html lang="en">
+=======
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+?>
+<html>
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 <head>
 	<meta charset="utf-8">
 	<title>Sample &mdash; CKEditor</title>
 	<link rel="stylesheet" href="sample.css">
+<<<<<<< HEAD
 	<meta name="description" content="Try the latest sample of CKEditor 4 and learn more about customizing your WYSIWYG editor with endless possibilities.">
+=======
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 </head>
 <body>
 	<h1 class="samples">
@@ -50,10 +61,17 @@ if (!empty($_POST))
 	<div id="footer">
 		<hr>
 		<p>
+<<<<<<< HEAD
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
 		<p id="copy">
 			Copyright &copy; 2003-2022, <a class="samples" href="https://cksource.com/">CKSource</a> Holding sp. z o.o. All rights reserved.
+=======
+			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p id="copy">
+			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		</p>
 	</div>
 </body>

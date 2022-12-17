@@ -802,3 +802,18 @@ D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\vi-VN\ShoesProject.resourc
 D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.csproj.CopyComplete
 D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.dll
 D:\CodeC_Net\SourceCode - Copy\ShoesProject\obj\Debug\ShoesProject.pdb
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.pdb
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\ShoesProject.dll.config
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\ShoesProject.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\ShoesProject.pdb
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\vi-VN\ShoesProject.resources.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\Newtonsoft.Json.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\bin\System.Buffers.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.Resources.Data.resources
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.Resources.Data.vi-VN.resources
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.csproj.GenerateResource.cache
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\vi-VN\ShoesProject.resources.dll
+C:\Users\DELL\Documents\Dotnet\.NET_CuoiKi\obj\Debug\ShoesProject.csproj.CopyComplete

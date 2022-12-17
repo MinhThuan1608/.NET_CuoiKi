@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <!--
+<<<<<<< HEAD
 Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 -->
 <html lang="en">
+=======
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 <head>
 	<meta charset="utf-8">
 	<title>API Usage &mdash; CKEditor Sample</title>
 	<script src="../../ckeditor.js"></script>
 	<link href="sample.css" rel="stylesheet">
+<<<<<<< HEAD
 	<meta name="description" content="Try the latest sample of CKEditor 4 and learn more about customizing your WYSIWYG editor with endless possibilities.">
+=======
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	<script>
 
 // The instanceReady event is fired, when an instance of CKEditor has finished
@@ -31,7 +41,11 @@ function InsertHTML() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert HTML code.
+<<<<<<< HEAD
 		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertHtml
+=======
+		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-insertHtml
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		editor.insertHtml( value );
 	}
 	else
@@ -47,7 +61,11 @@ function InsertText() {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Insert as plain text.
+<<<<<<< HEAD
 		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-insertText
+=======
+		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-insertText
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		editor.insertText( value );
 	}
 	else
@@ -60,7 +78,11 @@ function SetContents() {
 	var value = document.getElementById( 'htmlArea' ).value;
 
 	// Set editor contents (replace current contents).
+<<<<<<< HEAD
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-setData
+=======
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-setData
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	editor.setData( value );
 }
 
@@ -69,7 +91,11 @@ function GetContents() {
 	var editor = CKEDITOR.instances.editor1;
 
 	// Get editor contents
+<<<<<<< HEAD
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-getData
+=======
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-getData
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	alert( editor.getData() );
 }
 
@@ -81,7 +107,11 @@ function ExecuteCommand( commandName ) {
 	if ( editor.mode == 'wysiwyg' )
 	{
 		// Execute the command.
+<<<<<<< HEAD
 		// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-execCommand
+=======
+		// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-execCommand
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		editor.execCommand( commandName );
 	}
 	else
@@ -93,7 +123,11 @@ function CheckDirty() {
 	var editor = CKEDITOR.instances.editor1;
 	// Checks whether the current editor contents present changes when compared
 	// to the contents loaded into the editor at startup
+<<<<<<< HEAD
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-checkDirty
+=======
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-checkDirty
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	alert( editor.checkDirty() );
 }
 
@@ -101,7 +135,11 @@ function ResetDirty() {
 	// Get the editor instance that we want to interact with.
 	var editor = CKEDITOR.instances.editor1;
 	// Resets the "dirty state" of the editor (see CheckDirty())
+<<<<<<< HEAD
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html#method-resetDirty
+=======
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.editor-method-resetDirty
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	editor.resetDirty();
 	alert( 'The "IsDirty" status has been reset' );
 }
@@ -126,12 +164,20 @@ function onBlur() {
 		<a href="index.html">CKEditor Samples</a> &raquo; Using CKEditor JavaScript API
 	</h1>
 	<div class="warning deprecated">
+<<<<<<< HEAD
 		This sample is not maintained anymore. Check out its <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/api.html">brand new version in CKEditor Examples</a>.
+=======
+		This sample is not maintained anymore. Check out its <a href="http://sdk.ckeditor.com/samples/api.html">brand new version in CKEditor SDK</a>.
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 	</div>
 	<div class="description">
 	<p>
 		This sample shows how to use the
+<<<<<<< HEAD
 		<a class="samples" href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_editor.html">CKEditor JavaScript API</a>
+=======
+		<a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR.editor">CKEditor JavaScript API</a>
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		to interact with the editor at runtime.
 	</p>
 	<p>
@@ -150,7 +196,11 @@ function onBlur() {
 		</noscript>
 	</div>
 	<form action="../../../samples/sample_posteddata.php" method="post">
+<<<<<<< HEAD
 		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="https://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+=======
+		<textarea cols="100" id="editor1" name="editor1" rows="10">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 
 		<script>
 			// Replace the <textarea id="editor1"> with an CKEditor instance.
@@ -200,10 +250,18 @@ Second line of text preceded by two line breaks.</textarea>
 	<div id="footer">
 		<hr>
 		<p>
+<<<<<<< HEAD
 			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
 		</p>
 		<p id="copy">
 			Copyright &copy; 2003-2022, <a class="samples" href="https://cksource.com/">CKSource</a> Holding sp. z o.o. All rights reserved.
+=======
+			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+		</p>
+		<p id="copy">
+			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico
+			Knabben. All rights reserved.
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 		</p>
 	</div>
 </body>

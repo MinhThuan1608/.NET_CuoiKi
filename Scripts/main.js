@@ -245,42 +245,51 @@ $(document).ready(function(){
     //----- Active No ui slider --------//
 
 
+        $(function () {
 
-    $(function(){
+            if (document.getElementById("price-range")) {
 
-        if(document.getElementById("price-range")){
-        
-        var nonLinearSlider = document.getElementById('price-range');
-        
-        noUiSlider.create(nonLinearSlider, {
-            connect: true,
-            behaviour: 'tap',
-            start: [ 500, 4000 ],
-            range: {
-                // Starting at 500, step the value by 500,
-                // until 4000 is reached. From there, step by 1000.
-                'min': [ 0 ],
-                '10%': [ 500, 500 ],
-                '50%': [ 4000, 1000 ],
-                'max': [ 10000 ]
+                var nonLinearSlider = document.getElementById('price-range');
+
+                noUiSlider.create(nonLinearSlider, {
+                    connect: true,
+                    behaviour: 'tap',
+                    start: [1000000, 2000000],
+                    range: {
+                        // Starting at 500, step the value by 500,
+                        // until 4000 is reached. From there, step by 1000.
+                        'min': [0, 100000],
+                        '10%': [300000, 100000],
+                        '20%': [600000, 100000],
+                        '30%': [900000, 100000],
+                        '40%': [1200000, 100000],
+                        '50%': [1500000, 100000],
+                        '60%': [1800000, 100000],
+                        '70%': [2100000, 100000],
+                        '80%': [2400000, 100000],
+                        '90%': [2700000, 100000],
+                        'max': [3000000]
+                    }
+                });
+
+                var nodes = [
+                    document.getElementById('lower-value'), // 0
+                    document.getElementById('upper-value')  // 1
+                ];
+                // const numberFormat = new Intl.NumberFormat('vi-VN', {
+                //    style: 'currency',
+                //      currency: 'VND',
+                //  });
+                // Display the slider value and how far the handle moved
+                // from the left edge of the slider.
+                nonLinearSlider.noUiSlider.on('update', function (values, handle, unencoded, isTap, positions) {
+                    nodes[handle].innerHTML = values[handle] * 1; //numberFormat.format(values[handle]);
+                });
+
             }
+
         });
-
-
-        var nodes = [
-            document.getElementById('lower-value'), // 0
-            document.getElementById('upper-value')  // 1
-        ];
-
-        // Display the slider value and how far the handle moved
-        // from the left edge of the slider.
-        nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
-            nodes[handle].innerHTML = values[handle];
-        });
-
-        }
-
-    });
+ 
 
     
     //-------- Have Cupon Button Text Toggle Change -------//

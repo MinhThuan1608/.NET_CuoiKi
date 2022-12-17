@@ -10,6 +10,7 @@
 
 #scayt_about_
 {
+<<<<<<< HEAD
     margin: 30px auto 0 auto;
 }
 
@@ -19,6 +20,12 @@
 	margin-bottom: 10px;
 }
 
+=======
+    width: 190px;
+    margin: 30px auto 0 auto;
+}
+
+>>>>>>> 450fb9a9247746df93bf4fad4efd5624ee361aeb
 .cke_dialog_contents_body div[name=dictionaries] .cke_dialog_ui_hbox_last > a.cke_dialog_ui_button
 {
     margin-top: 0;
